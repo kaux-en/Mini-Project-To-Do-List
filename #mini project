@@ -1,0 +1,102 @@
+
+print("Welcome to the To-Do List App !")
+
+tasks = {"Store run": ["Incomplete"],
+        "Do laundry": ["Incomplete"],
+        "Grocery shopping": ["Incomplete"]}
+
+
+
+def menu():
+    print("1. Add a task")
+    print("2. View tasks")
+    print("3. Mark a task as complete")
+    print("4. Delete a task")
+    print("5. Quit")
+
+menu()
+option = int(input("Enter your option: "))
+
+while option != 0:
+    if option == 1:
+        print("Option 1 has been chosen")
+        task = input("Add a task: ").lower()
+        status = input("Is this task complete or incomplete? ").lower()
+        tasks.update({task: [status]})    
+        print(tasks)
+        done = input("Type 'quit' to return to menu: ")
+        if done == "quit":
+
+            menu()
+        option = int(input("Enter your option: "))          
+            
+    if option == 2:
+        print("Option 2 has been chosen")
+        print(tasks)
+        done = input("Type 'quit' to return to menu: ").lower()
+        if done == "quit":
+
+            menu()
+        option = int(input("Enter your option: ")) 
+
+    if option == 3:
+        print("Option 3 has been chosen")
+        chosen_task = input("Choose task to complete: ").lower()
+        if chosen_task == "store run":
+            tasks.update({"Store run": ["Complete"]})
+            print(tasks)
+        elif chosen_task == "do laundry":
+            tasks.update({"Do laundry": ["Complete"]})
+            print(tasks)
+        elif chosen_task == "grocery shopping":
+            tasks.update({"Grocery shopping": ["Complete"]})
+            print(tasks)
+        try:
+            if chosen_task not in tasks:
+               print("That entry is not in your tasks.") 
+        except Exception as e:
+            print("Please enter a task.")
+        done = input("Type 'quit' to return to menu: ").lower()
+        if done == "quit":
+
+            menu()
+        option = int(input("Enter your option: ")) 
+
+    if option == 4:
+        print("Option 4 has been chosen")
+        delete_task = input("Choose a task to delete: ").lower()
+        if delete_task == "store run":
+            tasks.pop("Store run")
+            print("That task has been deleted.")
+        elif delete_task == "do laundry":
+            tasks.pop("Do laundry")
+            print("That task has been deleted.")
+        elif delete_task == "grocery shopping":
+            tasks.pop("Grocery shopping")
+            print("That task has been deleted.")
+        else:
+            try:
+                if chosen_task not in tasks:
+                    print("That entry is not in your tasks.") 
+            except Exception as e:
+                print("Please enter a task.")
+        done = input("Type 'quit' to return to menu: ").lower()
+        if done == "quit":
+
+            menu()
+        option = int(input("Enter your option: ")) 
+
+        
+    if option == 5:
+        print("Thank you for using our To-Do List Application!")
+        break
+
+while option == 0:
+    print("Invalid option. Please choose again.")
+    menu()
+    option = int(input("Enter your option: "))
+    if option > 5:
+        print("Invalid option. Please choose again.")
+    menu()
+    option = int(input("Enter your option: "))
+    
